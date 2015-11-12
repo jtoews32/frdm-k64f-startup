@@ -58,11 +58,6 @@ __isr_vector:
     .globl   Reset_Handler
     .type    Reset_Handler, %function
 Reset_Handler:
-    .pool
-   
-    ldr 	r1, =0x400FF040
-  	mov		r2, #0b00000000000000001111111100000000
-  
 	@ Set PTB 22 as General GPIO pin  
 	LDR r1, =PORTB_BASE
 	LDR r0, [r1, #PORT_PCR22]
