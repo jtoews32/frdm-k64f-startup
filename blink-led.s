@@ -39,19 +39,19 @@ __isr_vector:
     .text 
     .thumb
     .thumb_func
-    .equ	PORTE_BASE,	 	0x4004D000
-    .equ 	PORTB_BASE,  	0x4004A000
-    .equ	PTB_BASE, 		0x400FF040
-    .equ 	PTE_BASE,		0x400FF100
-    .equ	PORT_PCR22,  	0x58
-    .equ	PORT_PCR21,		0x54
-	.equ	PORT_PCR26,		0x68
-    .equ	GPIO_PDOR,  	0x00   @; Port Data Output Register, offset: 0x0
-	.equ	GPIO_PSOR,		0x04   @; Port Set Output Register, offset: 0x4
-	.equ	GPIO_PCOR,		0x08   @; Port Clear Output Register, offset: 0x8
-	.equ	GPIO_PTOR,		0x0C   @; Port Toggle Output Register, offset: 0xC
-	.equ	GPIO_PDIR,		0x10   @; Port Data Input Register, offset: 0x10
-	.equ	GPIO_PDDR,		0x14   @; Port Data Direction Register, offset: 0x14
+    .equ	 PORTE_BASE,	 	0x4004D000
+    .equ 	 PORTB_BASE,  	0x4004A000
+    .equ	 PTB_BASE, 		0x400FF040
+    .equ 	 PTE_BASE,		0x400FF100
+    .equ	 PORT_PCR22,  	0x58
+    .equ	 PORT_PCR21,		0x54
+	.equ	 PORT_PCR26,		0x68
+    .equ	 GPIO_PDOR,  	0x00   @; Port Data Output Register, offset: 0x0
+	.equ	 GPIO_PSOR,		0x04   @; Port Set Output Register, offset: 0x4
+	.equ	 GPIO_PCOR,		0x08   @; Port Clear Output Register, offset: 0x8
+	.equ	 GPIO_PTOR,		0x0C   @; Port Toggle Output Register, offset: 0xC
+	.equ	 GPIO_PDIR,		0x10   @; Port Data Input Register, offset: 0x10
+	.equ	 GPIO_PDDR,		0x14   @; Port Data Direction Register, offset: 0x14
 
 	
     .align  2
