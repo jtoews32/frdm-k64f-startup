@@ -1,3 +1,5 @@
 # frdm-k64f-startup
 
-Type: . build.sh
+To build type: . 
+
+prompt#> . build.sh
