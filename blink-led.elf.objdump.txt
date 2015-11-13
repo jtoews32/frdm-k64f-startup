@@ -2,88 +2,212 @@
 blink-led.elf:     file format elf32-littlearm
 
 
-Disassembly of section .text:
+Disassembly of section .isr_vector:
 
 00000000 <__isr_vector>:
-   0:	00000400 	.word	0x00000400
-   4:	00000041 	.word	0x00000041
-   8:	0000008f 	.word	0x0000008f
-   c:	00000091 	.word	0x00000091
-  10:	00000093 	.word	0x00000093
-  14:	00000095 	.word	0x00000095
-  18:	00000097 	.word	0x00000097
+   0:	20030000 	.word	0x20030000
+   4:	00000199 	.word	0x00000199
+   8:	00000391 	.word	0x00000391
+   c:	00000393 	.word	0x00000393
+  10:	00000395 	.word	0x00000395
+  14:	00000397 	.word	0x00000397
+  18:	00000399 	.word	0x00000399
 	...
-  2c:	00000099 	.word	0x00000099
-  30:	0000009b 	.word	0x0000009b
+  2c:	0000039b 	.word	0x0000039b
+  30:	0000039d 	.word	0x0000039d
   34:	00000000 	.word	0x00000000
-  38:	0000009d 	.word	0x0000009d
-  3c:	0000009f 	.word	0x0000009f
+  38:	0000039f 	.word	0x0000039f
+  3c:	000003a1 	.word	0x000003a1
+  40:	000003a3 	.word	0x000003a3
+  44:	000003a3 	.word	0x000003a3
+  48:	000003a3 	.word	0x000003a3
+  4c:	000003a3 	.word	0x000003a3
+  50:	000003a3 	.word	0x000003a3
+  54:	000003a3 	.word	0x000003a3
+  58:	000003a3 	.word	0x000003a3
+  5c:	000003a3 	.word	0x000003a3
+  60:	000003a3 	.word	0x000003a3
+  64:	000003a3 	.word	0x000003a3
+  68:	000003a3 	.word	0x000003a3
+  6c:	000003a3 	.word	0x000003a3
+  70:	000003a3 	.word	0x000003a3
+  74:	000003a3 	.word	0x000003a3
+  78:	000003a3 	.word	0x000003a3
+  7c:	000003a3 	.word	0x000003a3
+  80:	000003a3 	.word	0x000003a3
+  84:	000003a3 	.word	0x000003a3
+  88:	000003a3 	.word	0x000003a3
+  8c:	000003a3 	.word	0x000003a3
+  90:	000003a3 	.word	0x000003a3
+  94:	000003a3 	.word	0x000003a3
+  98:	000003a3 	.word	0x000003a3
+  9c:	000003a3 	.word	0x000003a3
+  a0:	000003a3 	.word	0x000003a3
+  a4:	000003a3 	.word	0x000003a3
+  a8:	000003a3 	.word	0x000003a3
+  ac:	000003a3 	.word	0x000003a3
+  b0:	000003a3 	.word	0x000003a3
+  b4:	000003a3 	.word	0x000003a3
+  b8:	000003a3 	.word	0x000003a3
+  bc:	000003a3 	.word	0x000003a3
+  c0:	000003a3 	.word	0x000003a3
+  c4:	000003a3 	.word	0x000003a3
+  c8:	000003a3 	.word	0x000003a3
+  cc:	000003a3 	.word	0x000003a3
+  d0:	000003a3 	.word	0x000003a3
+  d4:	000003a3 	.word	0x000003a3
+  d8:	000003a3 	.word	0x000003a3
+  dc:	000003a3 	.word	0x000003a3
+  e0:	000003a3 	.word	0x000003a3
+  e4:	000003a3 	.word	0x000003a3
+  e8:	000003a3 	.word	0x000003a3
+  ec:	000003a3 	.word	0x000003a3
+  f0:	000003a3 	.word	0x000003a3
+  f4:	000003a3 	.word	0x000003a3
+  f8:	000003a3 	.word	0x000003a3
+  fc:	000003a3 	.word	0x000003a3
+ 100:	000003a3 	.word	0x000003a3
+ 104:	000003a3 	.word	0x000003a3
+ 108:	000003a3 	.word	0x000003a3
+ 10c:	000003a3 	.word	0x000003a3
+ 110:	000003a3 	.word	0x000003a3
+ 114:	000003a3 	.word	0x000003a3
+ 118:	000003a3 	.word	0x000003a3
+ 11c:	000003a3 	.word	0x000003a3
+ 120:	000003a3 	.word	0x000003a3
+ 124:	000003a3 	.word	0x000003a3
+ 128:	000003a3 	.word	0x000003a3
+ 12c:	000003a3 	.word	0x000003a3
+ 130:	000003a3 	.word	0x000003a3
+ 134:	000003a3 	.word	0x000003a3
+ 138:	000003a3 	.word	0x000003a3
+ 13c:	000003a3 	.word	0x000003a3
+ 140:	000003a3 	.word	0x000003a3
+ 144:	000003a3 	.word	0x000003a3
+ 148:	000003a3 	.word	0x000003a3
+ 14c:	000003a3 	.word	0x000003a3
+ 150:	000003a3 	.word	0x000003a3
+ 154:	000003a3 	.word	0x000003a3
+ 158:	000003a3 	.word	0x000003a3
+ 15c:	000003a3 	.word	0x000003a3
+ 160:	000003a3 	.word	0x000003a3
+ 164:	000003a3 	.word	0x000003a3
+ 168:	000003a3 	.word	0x000003a3
+ 16c:	000003a3 	.word	0x000003a3
+ 170:	000003a3 	.word	0x000003a3
+ 174:	000003a3 	.word	0x000003a3
+ 178:	000003a3 	.word	0x000003a3
+ 17c:	000003a3 	.word	0x000003a3
+ 180:	000003a3 	.word	0x000003a3
+ 184:	000003a3 	.word	0x000003a3
+ 188:	000003a3 	.word	0x000003a3
+ 18c:	000003a3 	.word	0x000003a3
+ 190:	000003a3 	.word	0x000003a3
+ 194:	000003a3 	.word	0x000003a3
 
-00000040 <Reset_Handler>:
-  40:	4918      	ldr	r1, [pc, #96]	; (a4 <Default_Handler+0x4>)
-  42:	6d88      	ldr	r0, [r1, #88]	; 0x58
-  44:	f440 7080 	orr.w	r0, r0, #256	; 0x100
-  48:	6588      	str	r0, [r1, #88]	; 0x58
-  4a:	6d48      	ldr	r0, [r1, #84]	; 0x54
-  4c:	f440 7080 	orr.w	r0, r0, #256	; 0x100
-  50:	6548      	str	r0, [r1, #84]	; 0x54
-  52:	4915      	ldr	r1, [pc, #84]	; (a8 <Default_Handler+0x8>)
-  54:	6e88      	ldr	r0, [r1, #104]	; 0x68
-  56:	f440 7080 	orr.w	r0, r0, #256	; 0x100
-  5a:	6688      	str	r0, [r1, #104]	; 0x68
-  5c:	4913      	ldr	r1, [pc, #76]	; (ac <Default_Handler+0xc>)
-  5e:	6948      	ldr	r0, [r1, #20]
-  60:	f440 1000 	orr.w	r0, r0, #2097152	; 0x200000
-  64:	f440 0080 	orr.w	r0, r0, #4194304	; 0x400000
-  68:	6148      	str	r0, [r1, #20]
-  6a:	4911      	ldr	r1, [pc, #68]	; (b0 <Default_Handler+0x10>)
-  6c:	6948      	ldr	r0, [r1, #20]
-  6e:	f040 6080 	orr.w	r0, r0, #67108864	; 0x4000000
-  72:	6148      	str	r0, [r1, #20]
-  74:	490d      	ldr	r1, [pc, #52]	; (ac <Default_Handler+0xc>)
-  76:	6808      	ldr	r0, [r1, #0]
-  78:	f440 1000 	orr.w	r0, r0, #2097152	; 0x200000
-  7c:	f420 0080 	bic.w	r0, r0, #4194304	; 0x400000
-  80:	6008      	str	r0, [r1, #0]
-  82:	490b      	ldr	r1, [pc, #44]	; (b0 <Default_Handler+0x10>)
-  84:	6808      	ldr	r0, [r1, #0]
-  86:	f040 6080 	orr.w	r0, r0, #67108864	; 0x4000000
-  8a:	6008      	str	r0, [r1, #0]
+00000198 <Reset_Handler>:
+ 198:	4921      	ldr	r1, [pc, #132]	; (220 <loop+0x6>)
+ 19a:	4822      	ldr	r0, [pc, #136]	; (224 <loop+0xa>)
+ 19c:	8008      	strh	r0, [r1, #0]
+ 19e:	4822      	ldr	r0, [pc, #136]	; (228 <loop+0xe>)
+ 1a0:	8008      	strh	r0, [r1, #0]
+ 1a2:	4922      	ldr	r1, [pc, #136]	; (22c <loop+0x12>)
+ 1a4:	4822      	ldr	r0, [pc, #136]	; (230 <loop+0x16>)
+ 1a6:	8008      	strh	r0, [r1, #0]
+ 1a8:	4922      	ldr	r1, [pc, #136]	; (234 <loop+0x1a>)
+ 1aa:	4a23      	ldr	r2, [pc, #140]	; (238 <loop+0x1e>)
+ 1ac:	4b23      	ldr	r3, [pc, #140]	; (23c <loop+0x22>)
+ 1ae:	1a9b      	subs	r3, r3, r2
+ 1b0:	dd05      	ble.n	1be <Reset_Handler+0x26>
+ 1b2:	2400      	movs	r4, #0
+ 1b4:	5908      	ldr	r0, [r1, r4]
+ 1b6:	5110      	str	r0, [r2, r4]
+ 1b8:	3404      	adds	r4, #4
+ 1ba:	429c      	cmp	r4, r3
+ 1bc:	dbfa      	blt.n	1b4 <Reset_Handler+0x1c>
+ 1be:	4920      	ldr	r1, [pc, #128]	; (240 <loop+0x26>)
+ 1c0:	4a20      	ldr	r2, [pc, #128]	; (244 <loop+0x2a>)
+ 1c2:	5888      	ldr	r0, [r1, r2]
+ 1c4:	f440 6080 	orr.w	r0, r0, #1024	; 0x400
+ 1c8:	f440 5000 	orr.w	r0, r0, #8192	; 0x2000
+ 1cc:	5088      	str	r0, [r1, r2]
+ 1ce:	491e      	ldr	r1, [pc, #120]	; (248 <loop+0x2e>)
+ 1d0:	6d88      	ldr	r0, [r1, #88]	; 0x58
+ 1d2:	f440 7080 	orr.w	r0, r0, #256	; 0x100
+ 1d6:	6588      	str	r0, [r1, #88]	; 0x58
+ 1d8:	6d48      	ldr	r0, [r1, #84]	; 0x54
+ 1da:	f440 7080 	orr.w	r0, r0, #256	; 0x100
+ 1de:	6548      	str	r0, [r1, #84]	; 0x54
+ 1e0:	491a      	ldr	r1, [pc, #104]	; (24c <loop+0x32>)
+ 1e2:	6e88      	ldr	r0, [r1, #104]	; 0x68
+ 1e4:	f440 7080 	orr.w	r0, r0, #256	; 0x100
+ 1e8:	6688      	str	r0, [r1, #104]	; 0x68
+ 1ea:	4919      	ldr	r1, [pc, #100]	; (250 <loop+0x36>)
+ 1ec:	6948      	ldr	r0, [r1, #20]
+ 1ee:	f440 1000 	orr.w	r0, r0, #2097152	; 0x200000
+ 1f2:	f440 0080 	orr.w	r0, r0, #4194304	; 0x400000
+ 1f6:	6148      	str	r0, [r1, #20]
+ 1f8:	4916      	ldr	r1, [pc, #88]	; (254 <loop+0x3a>)
+ 1fa:	6948      	ldr	r0, [r1, #20]
+ 1fc:	f040 6080 	orr.w	r0, r0, #67108864	; 0x4000000
+ 200:	6148      	str	r0, [r1, #20]
+ 202:	4913      	ldr	r1, [pc, #76]	; (250 <loop+0x36>)
+ 204:	6808      	ldr	r0, [r1, #0]
+ 206:	f440 1000 	orr.w	r0, r0, #2097152	; 0x200000
+ 20a:	f420 0080 	bic.w	r0, r0, #4194304	; 0x400000
+ 20e:	6008      	str	r0, [r1, #0]
+ 210:	4910      	ldr	r1, [pc, #64]	; (254 <loop+0x3a>)
+ 212:	6808      	ldr	r0, [r1, #0]
+ 214:	f040 6080 	orr.w	r0, r0, #67108864	; 0x4000000
+ 218:	6008      	str	r0, [r1, #0]
 
-0000008c <loop>:
-  8c:	e7fe      	b.n	8c <loop>
+0000021a <loop>:
+ 21a:	e7fe      	b.n	21a <loop>
+ 21c:	4700      	bx	r0
+ 21e:	0000      	.short	0x0000
+ 220:	4005200e 	.word	0x4005200e
+ 224:	0000c520 	.word	0x0000c520
+ 228:	0000d928 	.word	0x0000d928
+ 22c:	40052000 	.word	0x40052000
+ 230:	000001d2 	.word	0x000001d2
+ 234:	000003a4 	.word	0x000003a4
+ 238:	1fff0198 	.word	0x1fff0198
+ 23c:	1fff0198 	.word	0x1fff0198
+ 240:	04004700 	.word	0x04004700
+ 244:	00001038 	.word	0x00001038
+ 248:	4004a000 	.word	0x4004a000
+ 24c:	4004d000 	.word	0x4004d000
+ 250:	400ff040 	.word	0x400ff040
+ 254:	400ff100 	.word	0x400ff100
 
-0000008e <NMI_Handler>:
-  8e:	e7fe      	b.n	8e <NMI_Handler>
+Disassembly of section .text:
 
-00000090 <HardFault_Handler>:
-  90:	e7fe      	b.n	90 <HardFault_Handler>
+00000390 <NMI_Handler>:
+ 390:	e7fe      	b.n	390 <NMI_Handler>
 
-00000092 <MemManage_Handler>:
-  92:	e7fe      	b.n	92 <MemManage_Handler>
+00000392 <HardFault_Handler>:
+ 392:	e7fe      	b.n	392 <HardFault_Handler>
 
-00000094 <BusFault_Handler>:
-  94:	e7fe      	b.n	94 <BusFault_Handler>
+00000394 <MemManage_Handler>:
+ 394:	e7fe      	b.n	394 <MemManage_Handler>
 
-00000096 <UsageFault_Handler>:
-  96:	e7fe      	b.n	96 <UsageFault_Handler>
+00000396 <BusFault_Handler>:
+ 396:	e7fe      	b.n	396 <BusFault_Handler>
 
-00000098 <SVC_Handler>:
-  98:	e7fe      	b.n	98 <SVC_Handler>
+00000398 <UsageFault_Handler>:
+ 398:	e7fe      	b.n	398 <UsageFault_Handler>
 
-0000009a <DebugMon_Handler>:
-  9a:	e7fe      	b.n	9a <DebugMon_Handler>
+0000039a <SVC_Handler>:
+ 39a:	e7fe      	b.n	39a <SVC_Handler>
 
-0000009c <PendSV_Handler>:
-  9c:	e7fe      	b.n	9c <PendSV_Handler>
+0000039c <DebugMon_Handler>:
+ 39c:	e7fe      	b.n	39c <DebugMon_Handler>
 
-0000009e <SysTick_Handler>:
-  9e:	e7fe      	b.n	9e <SysTick_Handler>
+0000039e <PendSV_Handler>:
+ 39e:	e7fe      	b.n	39e <PendSV_Handler>
 
-000000a0 <Default_Handler>:
-  a0:	e7fe      	b.n	a0 <Default_Handler>
-  a2:	0000      	.short	0x0000
-  a4:	4004a000 	.word	0x4004a000
-  a8:	4004d000 	.word	0x4004d000
-  ac:	400ff040 	.word	0x400ff040
-  b0:	400ff100 	.word	0x400ff100
+000003a0 <SysTick_Handler>:
+ 3a0:	e7fe      	b.n	3a0 <SysTick_Handler>
+
+000003a2 <ADC0_IRQHandler>:
+ 3a2:	e7fe      	b.n	3a2 <ADC0_IRQHandler>

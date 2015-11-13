@@ -1,175 +1,164 @@
-/* Common linker file used by GNU for ARM CORTEX-M3 - LPC1700 platform
- * Used in ROM mode
- * HieuNguyen - NXP Vietnam lab
- * 2009 Feb 11: Preliminary */
+/*
+ * K64F ARM GCC linker script file
+ */
 
-/* MEMORY command : Define allowed memory regions */
-/* This part define various memory regions that the */
-/* linker is allowed to put data into. This is an */
-/* optional feature, but useful because the linker can */
-/* warn you when your program is too big to fit. */
 MEMORY
 {
-	/* On-chip ROM is a readable (r), executable region (x) */
-	IROM (rx) : ORIGIN = 0x00000000, LENGTH = 512k
-	/* On-chip SRAM is a readable (r), writable (w) and */
-	/* executable region (x) */
-	IRAM0 (rwx) : ORIGIN = 0x10000000, LENGTH = 32k
-	/*
-	 * Used for Ethernet RAM section
-	 * IRAM1 (rwx) : ORIGIN = 0x2007C000, LENGTH = 16k
-	 */
-	/*
-	 * Used for USB RAM section
-	 *
-	 */
-	 IRAM2 (rwx) : ORIGIN = 0x20080000, LENGTH = 16k
+  VECTORS (rx)          : ORIGIN = 0x00000000, LENGTH = 0x00000380
+  FLASH_PROTECTION (rx) : ORIGIN = 0x00000380, LENGTH = 0x00000010
+  FLASH (rx)            : ORIGIN = 0x00000390, LENGTH = 0x00100000 - 0x00000390
+  RAM (rwx)             : ORIGIN = 0x1FFF0198, LENGTH = 0x00040000 - 0x00000198
 }
 
-/* SECTION command : Define mapping of input sections */
-/* into output sections. */
-
+/* Linker script to place sections and symbol values. Should be used together
+ * with other linker script that defines memory regions FLASH and RAM.
+ * It references following symbols, which must be defined in code:
+ * _reset_init : Entry of reset handler
+ *
+ * It defines following symbols, which code can use without definition:
+ * __exidx_start
+ * __exidx_end
+ * __etext
+ * __data_start__
+ * __preinit_array_start
+ * __preinit_array_end
+ * __init_array_start
+ * __init_array_end
+ * __fini_array_start
+ * __fini_array_end
+ * __data_end__
+ * __bss_start__
+ * __bss_end__
+ * __end__
+ * end
+ * __HeapLimit
+ * __StackLimit
+ * __StackTop
+ * __stack
+ */
 ENTRY(Reset_Handler)
 
 SECTIONS
 {
-	/******************************************/
-	/* code section */
-	.text :
-	{
-	  PROVIDE(stext = .);
-		KEEP(*(.isr_vector .isr_vector.*))
-		*(.text .text.*)
-		*(.gnu.linkonce.t.*)
-		*(.glue_7)
-		*(.glue_7t)
-		*(.gcc_except_table)
-		*(.rodata .rodata*)
-		*(.gnu.linkonce.r.*)
-		. = ALIGN(4);
-	} >IROM
 
-	/******************************************/
-	/* .ctors .dtors are used for c++ constructors/destructors */
-	.ctors :
-	{
-		. = ALIGN(4);
-		PROVIDE(__ctors_start = .);
-		KEEP(*(SORT(.ctors.*)))
-		KEEP(*(.ctors))
-		PROVIDE(__ctors_end = .);
-	} >IROM
+    .isr_vector :
+    {
+        __vector_table = .;
+        KEEP(*(.vector_table))
+        *(.text.Reset_Handler) 
+        *(.text.System_Init) 
+         . = ALIGN(4);
+    } > VECTORS
 
-	.dtors :
-	{
-		. = ALIGN(4);
-		PROVIDE(__dtors_start = .);
-		KEEP(*(SORT(.dtors.*)))
-		KEEP(*(.dtors))
-		PROVIDE(__dtors_end = .);
+    .flash_protect :
+    {
+        KEEP(*(.kinetis_flash_config_field))
+         . = ALIGN(4);
+    } > FLASH_PROTECTION
 
-		. = ALIGN(4);
-		/* End Of .text section */
-		etext = .;
-                _fini = .;
-		_sidata = .;
-	} >IROM
+    .text :
+    {
+        *(.text*)
 
-	/******************************************/
-	/* This used for USB RAM section */
-	.usb_ram (NOLOAD):
-	{
-		*.o (USB_RAM)
-	} > IRAM2
+        KEEP(*(.init))
+        KEEP(*(.fini))
 
-	/* data section */
-	.data : AT (_sidata)
-  	{
-  		. = ALIGN(4);
-		_sdata = .;
+        /* .ctors */
+        *crtbegin.o(.ctors)
+        *crtbegin?.o(.ctors)
+        *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+        *(SORT(.ctors.*))
+        *(.ctors)
 
-		*(vtable vtable.*)
-		*(.data .data.*)
-		*(.gnu.linkonce.d*)
+        /* .dtors */
+        *crtbegin.o(.dtors)
+        *crtbegin?.o(.dtors)
+        *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+        *(SORT(.dtors.*))
+        *(.dtors)
 
-		. = ALIGN(4);
-		_edata = . ;
-	} >IRAM0
+        *(.rodata*)
 
-	/******************************************/
-	/* For no-init variables section */
-	.bss (NOLOAD) :
-	{
-		. = ALIGN(4);
-		_sbss = . ;
+        KEEP(*(.eh_frame*))
+    } > FLASH
 
-		*(.bss .bss.*)
-		*(.gnu.linkonce.b*)
-		*(COMMON)
+    .ARM.extab :
+    {
+        *(.ARM.extab* .gnu.linkonce.armextab.*)
+    } > FLASH
 
-		. = ALIGN(4);
-		_ebss = . ;
-	} >IRAM0
+    __exidx_start = .;
+    .ARM.exidx :
+    {
+        *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+    } > FLASH
+    __exidx_end = .;
 
-	/******************************************/
-	/* For stack section */
-  	.stackarea (NOLOAD) :
-  	{
-	    . = ALIGN(8);
-	    _sstack = .;
+    __etext = .;
 
-		*(.stackarea .stackarea.*)
+    .data : AT (__etext)
+    {
+        __data_start__ = .;
+        *(vtable)
+        *(.data*)
 
-		. = ALIGN(8);
-		_estack = .;
+        . = ALIGN(4);
+        /* preinit data */
+        PROVIDE_HIDDEN (__preinit_array_start = .);
+        KEEP(*(.preinit_array))
+        PROVIDE_HIDDEN (__preinit_array_end = .);
 
-		. = ALIGN(4);
-		_end = . ;
-		PROVIDE (end = .);
+        . = ALIGN(4);
+        /* init data */
+        PROVIDE_HIDDEN (__init_array_start = .);
+        KEEP(*(SORT(.init_array.*)))
+        KEEP(*(.init_array))
+        PROVIDE_HIDDEN (__init_array_end = .);
 
-  	} > IRAM0
 
-	/******************************************/
-	/* Stabs debugging sections.  */
-	.stab          0 : { *(.stab) }
-	.stabstr       0 : { *(.stabstr) }
-	.stab.excl     0 : { *(.stab.excl) }
-	.stab.exclstr  0 : { *(.stab.exclstr) }
-	.stab.index    0 : { *(.stab.index) }
-	.stab.indexstr 0 : { *(.stab.indexstr) }
-	/* .comment       0 : { *(.comment) } */
-	/* DWARF debug sections.
-	 Symbols in the DWARF debugging sections are relative to the beginning
-	 of the section so we begin them at 0.  */
-	/* DWARF 1 */
-	.debug          0 : { *(.debug) }
-	.line           0 : { *(.line) }
-	/* GNU DWARF 1 extensions */
-	.debug_srcinfo  0 : { *(.debug_srcinfo) }
-	.debug_sfnames  0 : { *(.debug_sfnames) }
-	/* DWARF 1.1 and DWARF 2 */
-	.debug_aranges  0 : { *(.debug_aranges) }
-	.debug_pubnames 0 : { *(.debug_pubnames) }
-	/* DWARF 2 */
-	.debug_info     0 : { *(.debug_info .gnu.linkonce.wi.*) }
-	.debug_abbrev   0 : { *(.debug_abbrev) }
-	.debug_line     0 : { *(.debug_line) }
-	.debug_frame    0 : { *(.debug_frame) }
-	.debug_str      0 : { *(.debug_str) }
-	.debug_loc      0 : { *(.debug_loc) }
-	.debug_macinfo  0 : { *(.debug_macinfo) }
-	/* SGI/MIPS DWARF 2 extensions */
-	.debug_weaknames 0 : { *(.debug_weaknames) }
-	.debug_funcnames 0 : { *(.debug_funcnames) }
-	.debug_typenames 0 : { *(.debug_typenames) }
-	.debug_varnames  0 : { *(.debug_varnames) }
+        . = ALIGN(4);
+        /* finit data */
+        PROVIDE_HIDDEN (__fini_array_start = .);
+        KEEP(*(SORT(.fini_array.*)))
+        KEEP(*(.fini_array))
+        PROVIDE_HIDDEN (__fini_array_end = .);
+
+        . = ALIGN(4);
+        /* All data end */
+        __data_end__ = .;
+
+    } > RAM
+
+    .bss  (NOLOAD):
+    {
+        __bss_start__ = .;
+        *(.bss*)
+        *(COMMON)
+        __bss_end__ = .;
+    } > RAM
+
+    .heap  (NOLOAD):
+    {
+        __end__ = .;
+        end = __end__;
+        *(.heap*)
+        __HeapLimit = .;
+    } > RAM
+
+    /* .stack_dummy section doesn't contains any symbols. It is only
+     * used for linker to calculate size of stack sections, and assign
+     * values to stack symbols later */
+    .stack_dummy :
+    {
+        *(.stack)
+    } > RAM
+
+    /* Set stack top to end of RAM, and stack limit move down by
+     * size of stack_dummy section */
+    __StackTop = ORIGIN(RAM) + LENGTH(RAM);
+    __StackLimit = __StackTop - SIZEOF(.stack_dummy);
+    PROVIDE(__stack = __StackTop);
+
+    /* Check if data + heap + stack exceeds RAM limit */
+    ASSERT(__StackLimit >= __HeapLimit, "region RAM overflowed with stack")
 }
-
-/*
-SECTIONS {	
-    	 . = 0x00000000;
-         .text : { * (.text); }
-
-         . = 0x00000400;
-         .data : { * (.data); } 
-}*/
